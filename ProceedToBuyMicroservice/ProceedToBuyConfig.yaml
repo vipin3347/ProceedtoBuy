@@ -1,0 +1,33 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proceedtobuyconfig-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ProceedToBuyConfig
+  template:
+    metadata:
+      labels:
+        app: ProceedToBuyConfig
+    spec:
+      containers:
+      - name: proceedtobuyrepos
+        image: podb3acr.azurecr.io/proceedtobuyrepos:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: configsn
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: proceedtobuyconfig
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: ProceedToBuyConfig
