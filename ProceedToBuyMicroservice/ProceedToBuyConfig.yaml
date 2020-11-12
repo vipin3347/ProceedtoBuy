@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: proceedtobuyrepos
-        image: podb3acr.azurecr.io/proceedtobuyrepos:latest
+        image: pod3acr.azurecr.io/proceedtobuyrepos:latest
         ports:
         - containerPort: 8080
       imagePullSecrets:
